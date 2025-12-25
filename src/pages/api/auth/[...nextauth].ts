@@ -23,8 +23,9 @@ async function refreshAccessToken(tokenParam: JWT): Promise<JWT> {
         "Content-Type": "application/x-www-form-urlencoded",
       },
       body: new URLSearchParams({
-        client_id: process.env.GOOGLE_CLIENT_ID!,
-        client_secret: process.env.GOOGLE_CLIENT_SECRET!,
+        // FIXED: Changed from GOOGLE to SPOTIFY credentials
+        client_id: process.env.SPOTIFY_CLIENT_ID!,
+        client_secret: process.env.SPOTIFY_CLIENT_SECRET!,
         grant_type: "refresh_token",
         refresh_token: tokenParam.refreshToken,
       }),
@@ -95,7 +96,6 @@ const authOptions: AuthOptions = {
       authorization: {
         url: "https://accounts.spotify.com/authorize",
         params: {
-          show_dialog: true,
           scope: [
             "user-read-currently-playing",
             "user-read-playback-state",
